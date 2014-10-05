@@ -24,16 +24,18 @@ module.exports = function(app) {
 			//phone
 			paymentMethodNonce: req.body.payment_method_nonce
 		}, function (err, result) {
-			res.end((result.success ? 200 : 500), result.customer);
+			res.end(result.customer.toString());
 		});
 	});
 
 	app.get('/pay', function(req, res){
+		console.log(req.query.uid, req.query.amount);
 		gateway.transaction.sale({
 			customerId: req.query.uid,
 			amount: req.query.amount
 		}, function (err, result) {
-			res.end(result.success ? 200 : 500);
+			console.log(result)
+			res.end(200);
 		});
 	});
 
