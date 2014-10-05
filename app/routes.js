@@ -12,7 +12,6 @@ module.exports = function(app) {
 	// handle things like api calls
 	// authentication routes
 	app.get('/bt/ctoken',function (req,res){
-		gateway.customer.create()
 		gateway.clientToken.generate({}, function (err, response) {
 			res.end(response.clientToken)
 		});
