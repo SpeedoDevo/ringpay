@@ -1,18 +1,13 @@
 var tessel = require('tessel');
-var rfid = require('rfid-pn532').use(tessel.port['D']);
-var request = require('request');
+var rfid = require('rfid-pn532').use(tessel.port['A']);
+var http = require('http');
 
 rfid.on('ready',function(){
 	rfid.on('data',function(data){
 		var uid = data.uid.toString('hex');
-		request.post(
-			'http://ringpay.herokuapp.com/uid',
-			{ form: { uid: uid } },
-			function (error, response, body) {
-				if (!error && response.statusCode == 200) {
-					console.log(body)
-				}
-			}
-		);
+		console.log(data);
+		http.get('http://ringpay.herokuapp.com/uid?uid='+uid,function(res){
+			console.log(res);
+		})
 	})
 })

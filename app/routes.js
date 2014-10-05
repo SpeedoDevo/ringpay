@@ -28,17 +28,18 @@ module.exports = function(app) {
 		});
 	});
 
-	app.post('/pay', function(req, res){
+	app.get('/pay', function(req, res){
 		gateway.transaction.sale({
-			customerId: req.body.uid,
-			amount: req.body.amount
+			customerId: req.query.uid,
+			amount: req.query.amount
 		}, function (err, result) {
 			res.end(result.success ? 200 : 500);
 		});
 	});
 
-	app.post('/uid', function(req, res){
-		uid = req.body.uid;
+	app.get('/uid', function(req, res){
+		// uid = req.body.uid;
+		uid = req.query.uid;
 		res.end(uid);
 	})
 
