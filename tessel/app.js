@@ -11,6 +11,8 @@ rfid.on('ready',function(){
 		// })
 		http.get('http://ringpay.herokuapp.com/pay?amount=2.5&uid='+uid,function(res){
 			console.log(res.statusCode);
+		}).on('error',function(err){
+			console.log(err);
 		});
 	});
 });
