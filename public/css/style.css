@@ -9,7 +9,7 @@ body {
  }
 
 .layer{
-	background: linear-gradient(rgba(0, 10, 50, 0.5), rgba(0, 10, 50, 1));
+	background: linear-gradient(rgba(0, 10, 50, 1), rgba(0, 10, 50, 0.25));
 	position: absolute;
 	z-index:-1;
 	width:100%;
@@ -37,9 +37,15 @@ h1{
 }
 
 #vid-bg{
-	width:100%;
-	position: absolute;
-	z-index: -2;
+	  position: absolute;
+  bottom: 0px; 
+  right: 0px; 
+  min-width: 100%; 
+  min-height: 100%; 
+  width: auto; 
+  height: auto; 
+  z-index: -1000; 
+  overflow: hidden
 }
 
 #paybutton{
