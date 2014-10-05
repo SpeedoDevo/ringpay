@@ -24,7 +24,7 @@ module.exports = function(app) {
 			//phone
 			paymentMethodNonce: req.body.payment_method_nonce
 		}, function (err, result) {
-			res.end(result.customer.toString());
+			res.end();
 		});
 	});
 
@@ -35,7 +35,7 @@ module.exports = function(app) {
 			amount: req.query.amount
 		}, function (err, result) {
 			// console.log(result)
-			// res.end();
+			res.end();
 		});
 	});
 
