@@ -1,10 +1,11 @@
 var braintree = require('braintree');
 var gateway = braintree.connect({
-  environment: braintree.Environment.Sandbox,
-  merchantId: "qrnmqsx39dsct293",
-  publicKey: "y39gvpg9hmz6mw9x",
-  privateKey: "153607c095324e5b4d0a7152240378e2"
+	environment: braintree.Environment.Sandbox,
+	merchantId: "qrnmqsx39dsct293",
+	publicKey: "y39gvpg9hmz6mw9x",
+	privateKey: "153607c095324e5b4d0a7152240378e2"
 });
+var uid = 0;
 
 module.exports = function(app) {
 
@@ -12,11 +13,37 @@ module.exports = function(app) {
 	// handle things like api calls
 	// authentication routes
 	app.get('/bt/ctoken',function (req,res){
-		gateway.customer.create()
 		gateway.clientToken.generate({}, function (err, response) {
 			res.end(response.clientToken)
 		});
 	});
+
+	app.post("/reg", function (req, res) {
+		gateway.customer.create({
+			id: uid,
+			//phone
+			paymentMethodNonce: req.body.payment_method_nonce
+		}, function (err, result) {
+			res.end();
+		});
+	});
+
+	app.get('/pay', function(req, res){
+		console.log(req.query.uid, req.query.amount);
+		gateway.transaction.sale({
+			customerId: req.query.uid,
+			amount: req.query.amount
+		}, function (err, result) {
+			// console.log(result)
+			res.end();
+		});
+	});
+
+	app.get('/uid', function(req, res){
+		// uid = req.body.uid;
+		uid = req.query.uid;
+		res.end(uid);
+	})
 
 	// frontend routes =========================================================
 	// route to handle all angular requests
