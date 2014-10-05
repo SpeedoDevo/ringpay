@@ -35,7 +35,7 @@ module.exports = function(app) {
 			amount: req.query.amount
 		}, function (err, result) {
 			// console.log(result)
-			res.end(200);
+			// res.end();
 		});
 	});
 
