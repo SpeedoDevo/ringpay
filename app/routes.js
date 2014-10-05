@@ -39,6 +39,7 @@ module.exports = function(app) {
 
 	app.post('/uid', function(req, res){
 		uid = req.body.uid;
+		console.log(uid);
 	})
 
 	// frontend routes =========================================================
