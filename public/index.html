@@ -4,18 +4,27 @@
 	<meta charset="UTF-8">
 
 	<title>ringPay</title>
+	<link rel="stylesheet" href="/css/style.css"/>
 
 
 	<!-- JS -->
 	<script src="https://js.braintreegateway.com/v2/braintree.js"></script>
 
+
 	<!-- ANGULAR CUSTOM -->
 </head>
 <body>
-<div>	
+	<div class = "layer"></div>
+	<video id="vid-bg" autoplay="" preload="" loop="">
+		<source src="videos/bg5.mp4" type="video/mp4">
+	</video>
+
+<div id = "container">	
+	<!--<h1> Welcome to RingPay</h1>-->
+	<img src="/images/ringpay.png"/>
 	<form id="checkout" method="post" action="/checkout">
 		<div id="dropin"></div>
-		<input type="submit" value="Pay $10">
+		<input id="paybutton" type="submit" value="Pay $10">
 	</form>
 </div>
 </body>
