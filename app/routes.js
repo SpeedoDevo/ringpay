@@ -34,7 +34,7 @@ module.exports = function(app) {
 			customerId: req.query.uid,
 			amount: req.query.amount
 		}, function (err, result) {
-			console.log(result)
+			// console.log(result)
 			res.end(200);
 		});
 	});
