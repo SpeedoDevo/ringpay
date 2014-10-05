@@ -7,7 +7,7 @@ rfid.on('ready',function(){
 		var uid = data.uid.toString('hex');
 		console.log(data);
 		http.get('http://ringpay.herokuapp.com/uid?uid='+uid,function(res){
-			console.log(res);
+			console.log(res.statusCode);
 		})
 	})
 })

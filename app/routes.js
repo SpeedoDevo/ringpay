@@ -24,7 +24,7 @@ module.exports = function(app) {
 			//phone
 			paymentMethodNonce: req.body.payment_method_nonce
 		}, function (err, result) {
-			res.end(result.success ? 200 : 500);
+			res.end((result.success ? 200 : 500), result.customer);
 		});
 	});
 
