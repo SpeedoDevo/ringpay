@@ -5,6 +5,8 @@ var gateway = braintree.connect({
 	publicKey: "y39gvpg9hmz6mw9x",
 	privateKey: "153607c095324e5b4d0a7152240378e2"
 });
+var twilio = require('twilio');
+var client = twilio('AC604badbcc8ce63d0a4a15e1407d28068', 'f51972084f378212d79263923b0e29d8');
 var uid = 0;
 
 module.exports = function(app) {
@@ -34,7 +36,15 @@ module.exports = function(app) {
 			customerId: req.query.uid,
 			amount: req.query.amount
 		}, function (err, result) {
-			// console.log(result)
+			client.messages.create({
+				to:'+447961223088',
+				from:'+442033897477',
+				body:'Your credit card has been charged £2.50'
+			}, function(error, message) {
+				if (error) {
+					console.log(error.message);
+				}
+			});
 			res.end();
 		});
 	});
